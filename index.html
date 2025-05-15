@@ -8,6 +8,37 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 	<meta charset="utf-8">
 	<link rel="icon" href="images/favicon.ico">
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Criar um elemento para mostrar os parâmetros
+    var debugDiv = document.createElement('div');
+    debugDiv.style.position = 'fixed';
+    debugDiv.style.top = '10px';
+    debugDiv.style.right = '10px';
+    debugDiv.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    debugDiv.style.color = 'white';
+    debugDiv.style.padding = '10px';
+    debugDiv.style.zIndex = '9999';
+    debugDiv.style.maxWidth = '300px';
+    debugDiv.style.overflow = 'auto';
+    
+    // Mostrar todos os parâmetros da URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var paramText = 'Parâmetros URL:<br>';
+    
+    if (urlParams.toString()) {
+        for (var pair of urlParams.entries()) {
+            paramText += pair[0] + ': ' + pair[1] + '<br>';
+        }
+    } else {
+        paramText += 'Nenhum parâmetro encontrado';
+    }
+    
+    debugDiv.innerHTML = paramText;
+    document.body.appendChild(debugDiv);
+});
+</script>	
 	
 	<!-- PreLoad Vturb -->
 <link rel="preload" href="https://scripts.converteai.net/346d0b46-bfce-433b-8766-f2f2f4f5f64b/players/6823d21595e262e998065798/player.js" as="script">
