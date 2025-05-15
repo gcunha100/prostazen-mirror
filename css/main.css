@@ -1,3 +1,24 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Evita rolagem horizontal */
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px; /* Ou o tamanho máximo que preferir */
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+/* Para tornar imagens responsivas */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 :root {
   --primary-color: #004B87;
   --secondary-color: #8F96A4;
