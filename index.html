@@ -9,6 +9,74 @@
 	<meta charset="utf-8">
 	<link rel="icon" href="images/favicon.ico">
 
+	<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Seus novos links do ClickBank
+  const newLinks = {
+    '2bottles': "https://prostazen.pay.clickbank.net/?cbitems=PTZ2FE&cbfid=57786&template=prostaz2&pg=upsell&hopId=30e3fa5c-4909-4f39-a865-080a83ef0cab&vq=01.41DA77AECCA473E8FD0A268D2C86E67F6BF8F53AFF600ACA9BFD6CEB2FA712A5168497C6B9D82A797FEABAAA0E7221EA71C29165&aff_sub2=v3_a72e0f57-9b6f-4f9b-9c63-940720996fdb_67ca2c14a6c0c2fc4d35c3ab_150_t-12_s-1",
+    '3bottles': "https://prostazen.pay.clickbank.net/?cbitems=PTZ3FE&cbfid=57786&template=prostaz3&pg=upsell&hopId=30e3fa5c-4909-4f39-a865-080a83ef0cab&vq=01.41DA77AECCA473E8FD0A268D2C86E67F6BF8F53AFF600ACA9BFD6CEB2FA712A5168497C6B9D82A797FEABAAA0E7221EA71C29165&aff_sub2=v3_a72e0f57-9b6f-4f9b-9c63-940720996fdb_67ca2c14a6c0c2fc4d35c3ab_150_t-12_s-1",
+    '6bottles': "https://prostazen.pay.clickbank.net/?cbitems=PTZ6FE&cbfid=57786&template=prostaz6&pg=upsell&hopId=30e3fa5c-4909-4f39-a865-080a83ef0cab&vq=01.41DA77AECCA473E8FD0A268D2C86E67F6BF8F53AFF600ACA9BFD6CEB2FA712A5168497C6B9D82A797FEABAAA0E7221EA71C29165&aff_sub2=v3_a72e0f57-9b6f-4f9b-9c63-940720996fdb_67ca2c14a6c0c2fc4d35c3ab_150_t-12_s-1"
+  };
+
+  // Função para atualizar todos os links de compra
+  function updateAllLinks() {
+    // Atualizar links para 2 frascos
+    const links2Bottles = document.querySelectorAll('a[href*="cbitems=PTZ2FE"]');
+    links2Bottles.forEach(link => {
+      link.href = newLinks['2bottles'];
+      console.log('Link de 2 frascos atualizado');
+    });
+
+    // Atualizar links para 3 frascos
+    const links3Bottles = document.querySelectorAll('a[href*="cbitems=PTZ3FE"]');
+    links3Bottles.forEach(link => {
+      link.href = newLinks['3bottles'];
+      console.log('Link de 3 frascos atualizado');
+    });
+
+    // Atualizar links para 6 frascos
+    const links6Bottles = document.querySelectorAll('a[href*="cbitems=PTZ6FE"]');
+    links6Bottles.forEach(link => {
+      link.href = newLinks['6bottles'];
+      console.log('Link de 6 frascos atualizado');
+    });
+  }
+
+  // Executar a atualização dos links
+  updateAllLinks();
+
+  // Adicionar monitoramento de cliques para diagnóstico
+  document.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A' || e.target.closest('a')) {
+      const link = e.target.tagName === 'A' ? e.target : e.target.closest('a');
+      
+      if (link.href && link.href.includes('clickbank')) {
+        console.log("Link do ClickBank clicado:", link.href);
+        
+        // Verificar se o link está correto antes de prosseguir
+        if (!link.href.includes('hopId=30e3fa5c-4909-4f39-a865-080a83ef0cab')) {
+          console.warn("Link pode estar desatualizado! Atualizando...");
+          
+          // Determinar qual tipo de produto é e atualizar o link
+          if (link.href.includes('PTZ2FE')) {
+            link.href = newLinks['2bottles'];
+          } else if (link.href.includes('PTZ3FE')) {
+            link.href = newLinks['3bottles'];
+          } else if (link.href.includes('PTZ6FE')) {
+            link.href = newLinks['6bottles'];
+          }
+        }
+      }
+    }
+  }, true);
+
+  // Verificação periódica para garantir que os links permaneçam atualizados
+  // (útil se houver scripts de terceiros que possam modificar os links)
+  setInterval(updateAllLinks, 5000);
+});
+</script>
+
+
 	<!-- PreLoad Vturb -->
 <link rel="preload" href="https://scripts.converteai.net/346d0b46-bfce-433b-8766-f2f2f4f5f64b/players/6823d21595e262e998065798/player.js" as="script">
 <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer/v1/smartplayer.min.js" as="script">
